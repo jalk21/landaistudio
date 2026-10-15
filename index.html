@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avanti Dentistry | Clínica Dental Premium</title>
+  <meta name="description" content="Clínica dental de alta gama en Vicálvaro, Madrid: odontología estética, implantes y ortodoncia con un trato cercano y tecnología de vanguardia.">
+  
+  <!-- Tipografías de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS del Chatbot nativo de n8n -->
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#111111',
+            charcoal: '#222222',
+            sand: '#f9f9f8',
+            stone: '#e5e5e3'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- ESTILOS Y SOBREESCRITURAS -->
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    
+    /* Animación flotante suave para badges */
+    @keyframes floaty { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+    .floaty { animation: floaty 4s ease-in-out infinite; }
+    .floaty-b { animation: floaty 5s ease-in-out infinite reverse; }
+    
+    /* Sello circular rotatorio */
+    @keyframes spin-slow { to { transform: rotate(360deg) } }
+    .spin-slow { animation: spin-slow 22s linear infinite; }
+
+    /* Efecto hover en tarjetas de servicios */
+    .card-svc { transition: all .4s ease; }
+    .card-svc:hover { background: #111111; color: #ffffff; transform: translateY(-6px); }
+    .card-svc:hover .svc-ico { background: #ffffff; color: #111111; }
+    .card-svc:hover .svc-txt { color: rgba(255,255,255,.75); }
+
+    /* Personalización estricta del Chatbot n8n al negro/blanco del logo */
+    :root {
+      --chat--color-primary: #111111 !important;
+      --chat--color-primary-shade-50: #222222 !important;
+      --chat--color-primary-shade-100: #333333 !important;
+      --chat--toggle--background: #111111 !important;
+      --chat--toggle--hover--background: #222222 !important;
+      --chat--header--background: #111111 !important;
+      --chat--header--color: #ffffff !important;
+      --chat--window--background: #ffffff !important;
+      --chat--message--bot--background: #f4f4f3 !important;
+      --chat--message--bot--color: #111111 !important;
+      --chat--message--user--background: #111111 !important;
+      --chat--message--user--color: #ffffff !important;
+      --chat--button--background: #111111 !important;
+      --chat--button--color: #ffffff !important;
+      --chat--font-family: 'Inter', sans-serif !important;
+    }
+
+    button[aria-label*="chat"],
+    button[aria-label*="Chat"],
+    .n8n-chat-button {
+      background-color: #111111 !important;
+    }
+  </style>
+</head>
+<body class="bg-white text-ink antialiased font-light overflow-x-hidden">
+
+<!-- HEADER CON LOGO EXTRA GRANDE -->
+<header class="fixed inset-x-0 top-0 z-40 bg-white/95 backdrop-blur border-b border-stone">
+  <div class="max-w-6xl mx-auto px-6 h-28 flex items-center justify-between">
+    
+    <!-- LOGO DESTACADO Y DE GRAN TAMAÑO -->
+    <a href="#inicio" class="flex items-center gap-3 group py-2">
+      <!-- Imagen PNG del logo -->
+      <img src="avanti_dentistry_transparent.png" alt="Avanti Dentistry Logo" class="h-18 md:h-22 w-auto object-contain transition-transform group-hover:scale-[1.02]" onerror="this.style.display='none'; document.getElementById('svgLogoFallback').style.display='flex';">
+      
+      <!-- LOGO VECTORIAL EXTRA GRANDE DE RESPALDO (SVG/CSS) -->
+      <div id="svgLogoFallback" class="hidden flex-col leading-none">
+        <div class="flex items-center gap-2">
+          <span class="font-serif text-5xl md:text-6xl font-medium tracking-tight text-ink">Avanti</span>
+          <svg class="w-8 h-8 md:w-10 md:h-10 text-ink -mt-4 md:-mt-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/>
+          </svg>
+        </div>
+        <span class="font-sans text-[13px] md:text-[15px] uppercase tracking-[0.3em] font-bold text-ink/80 mt-1">Dentistry</span>
+      </div>
+    </a>
+    
+    <nav class="hidden md:flex gap-8 text-base font-medium">
+      <a href="#servicios" class="hover:text-ink transition">Servicios</a>
+      <a href="#nosotros" class="hover:text-ink transition">Sobre nosotros</a>
+      <a href="#proceso" class="hover:text-ink transition">Tu visita</a>
+      <a href="#contacto" class="hover:text-ink transition">Contacto</a>
+    </nav>
+    <a href="#contacto" class="hidden md:inline-block text-base bg-ink text-white px-7 py-3 rounded-full hover:bg-charcoal transition font-medium">Pedir cita</a>
+    <button id="menuBtn" class="md:hidden p-2" aria-label="Abrir menú">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav id="mobileNav" class="hidden md:hidden border-t border-stone bg-white px-6 py-4 flex flex-col gap-4 text-base font-medium">
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Sobre nosotros</a>
+    <a href="#proceso">Tu visita</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<main>
+<!-- HERO PRINCIPAL -->
+<section id="inicio" class="relative pt-40 pb-20 bg-[#FAF9F7] overflow-hidden border-b border-stone">
+  <div class="relative max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    
+    <!-- TEXTO Y BOTONES -->
+    <div>
+      <p class="uppercase tracking-[0.2em] text-xs text-ink/50 mb-4 font-medium">ODONTOLOGÍA DE AUTOR</p>
+      <h1 class="font-serif text-5xl md:text-6xl leading-[1.05] mb-6 font-normal text-ink">
+        Una sonrisa<br><em class="italic font-normal">cuidada</em>,<br>un trato<br>excepcional.
+      </h1>
+      <p class="text-base text-ink/60 max-w-md mb-8 leading-relaxed">
+        Tecnología avanzada y atención personalizada para que cada visita sea tranquila, precisa y a tu medida.
+      </p>
+      
+      <div class="flex flex-wrap items-center gap-4 mb-8">
+        <a href="#contacto" class="bg-ink text-white px-7 py-3.5 rounded-full hover:bg-charcoal transition text-sm font-medium">Reservar primera visita</a>
+        <a href="#servicios" class="border border-stone bg-white text-ink/80 px-7 py-3.5 rounded-full hover:border-ink hover:text-ink transition text-sm font-medium">Ver servicios</a>
+      </div>
+      
+      <!-- AVATARES DE PACIENTES Y UBICACIÓN -->
+      <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+        <div class="flex items-center gap-3">
+          <div class="flex -space-x-2">
+            <img class="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Paciente">
+            <img class="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Paciente">
+            <img class="w-8 h-8 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Paciente">
+          </div>
+          <p class="text-xs text-ink/60"><strong class="font-semibold text-ink">+5.000</strong> pacientes confían en nosotros</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- IMAGEN EN ARCO CON BADGES FLOTANTES -->
+    <div class="relative">
+      
+      <!-- SELLO ROTATORIO SUPERIOR -->
+      <div class="spin-slow absolute -top-8 -right-2 w-24 h-24 hidden md:block z-10 pointer-events-none">
+        <svg viewBox="0 0 100 100" class="w-full h-full text-ink/70">
+          <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="none" />
+          <text font-size="8.5" letter-spacing="3" font-family="Inter" class="uppercase fill-current">
+            <textPath href="#circlePath">AVANTI · DENTISTRY · SONRÍE ·</textPath>
+          </text>
+        </svg>
+      </div>
+
+      <!-- ARCO CON IMAGEN -->
+      <div class="relative aspect-[4/5] max-w-[420px] mx-auto rounded-t-[200px] rounded-b-2xl overflow-hidden border border-stone/60 shadow-sm bg-stone/20">
+        <img class="w-full h-full object-cover object-center" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=80" alt="Consulta Odontológica Avanti Dentistry">
+      </div>
+
+      <!-- BADGE VALORACIÓN 4.9/5 -->
+      <div class="floaty absolute left-0 md:-left-4 top-10 bg-white/95 backdrop-blur rounded-2xl shadow-lg border border-stone/50 px-4 py-2.5 flex items-center gap-3 z-20">
+        <div class="w-8 h-8 rounded-full bg-ink text-white flex items-center justify-center text-xs">★</div>
+        <div>
+          <p class="font-serif text-base leading-none font-medium text-ink">4.9/5</p>
+          <p class="text-[10px] text-ink/50 mt-0.5">Valoración media</p>
+        </div>
+      </div>
+
+      <!-- BADGE PRIMERA VISITA -->
+      <div class="floaty-b absolute right-0 md:-right-2 bottom-10 bg-white/95 backdrop-blur rounded-2xl shadow-lg border border-stone/50 px-4 py-2.5 flex items-center gap-3 z-20">
+        <div class="w-6 h-6 rounded-full bg-stone/40 border border-stone flex items-center justify-center text-ink">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <div>
+          <p class="text-xs font-semibold text-ink leading-none">Primera visita</p>
+          <p class="text-[10px] text-ink/50 mt-0.5">Diagnóstico sin compromiso</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN DE TRATAMIENTOS / SERVICIOS -->
+<section id="servicios" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <p class="uppercase tracking-[.25em] text-xs text-ink/50 mb-3 font-medium">Tratamientos</p>
+      <h2 class="font-serif text-4xl md:text-5xl">Cuidamos cada detalle</h2>
+    </div>
+    
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <article class="card-svc p-8 rounded-2xl border border-stone bg-white">
+        <div class="svc-ico w-12 h-12 rounded-full bg-sand border border-stone flex items-center justify-center mb-6">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg>
+        </div>
+        <h3 class="font-serif text-2xl mb-2">Odontología estética</h3>
+        <p class="svc-txt text-ink/65 text-sm leading-relaxed">Carillas y blanqueamiento para una sonrisa natural y luminosa.</p>
+      </article>
+
+      <article class="card-svc p-8 rounded-2xl border border-stone bg-white">
+        <div class="svc-ico w-12 h-12 rounded-full bg-sand border border-stone flex items-center justify-center mb-6">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24"><path d="M12 3v18M8 7h8M8 11h8M8 15h8"/></svg>
+        </div>
+        <h3 class="font-serif text-2xl mb-2">Implantes dentales</h3>
+        <p class="svc-txt text-ink/65 text-sm leading-relaxed">Soluciones fijas y duraderas con planificación digital guiada.</p>
+      </article>
+
+      <article class="card-svc p-8 rounded-2xl border border-stone bg-white">
+        <div class="svc-ico w-12 h-12 rounded-full bg-sand border border-stone flex items-center justify-center mb-6">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24"><path d="M4 12c4-8 12-8 16 0-4 8-12 8-16 0z"/></svg>
+        </div>
+        <h3 class="font-serif text-2xl mb-2">Ortodoncia invisible</h3>
+        <p class="svc-txt text-ink/65 text-sm leading-relaxed">Alineadores discretos y cómodos, con seguimiento continuo.</p>
+      </article>
+
+      <article class="card-svc p-8 rounded-2xl border border-stone bg-white">
+        <div class="svc-ico w-12 h-12 rounded-full bg-sand border border-stone flex items-center justify-center mb-6">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24"><path d="M12 21s-8-5-8-11a4.5 4.5 0 018-2.7 4.5 4.5 0 018 2.7c0 6-8 11-8 11z"/></svg>
+        </div>
+        <h3 class="font-serif text-2xl mb-2">Odontología general</h3>
+        <p class="svc-txt text-ink/65 text-sm leading-relaxed">Revisiones, limpiezas y tratamientos preventivos.</p>
+      </article>
+
+      <article class="card-svc p-8 rounded-2xl border border-stone bg-white">
+        <div class="svc-ico w-12 h-12 rounded-full bg-sand border border-stone flex items-center justify-center mb-6">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg>
+        </div>
+        <h3 class="font-serif text-2xl mb-2">Periodoncia</h3>
+        <p class="svc-txt text-ink/65 text-sm leading-relaxed">Cuidado y salud de tus encías con técnicas mínimamente invasivas.</p>
+      </article>
+
+      <article class="card-svc p-8 rounded-2xl border border-stone bg-white">
+        <div class="svc-ico w-12 h-12 rounded-full bg-sand border border-stone flex items-center justify-center mb-6">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24"><path d="M12 8a3 3 0 100-6 3 3 0 000 6zM6 21c0-4 2.5-7 6-7s6 3 6 7"/></svg>
+        </div>
+        <h3 class="font-serif text-2xl mb-2">Odontopediatría</h3>
+        <p class="svc-txt text-ink/65 text-sm leading-relaxed">Un entorno amable para que los más pequeños pierdan el miedo.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section id="nosotros" class="py-20 bg-[#FAF9F7] border-y border-stone">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    <div class="aspect-square rounded-3xl bg-stone/20 border border-stone overflow-hidden">
+      <img class="w-full h-full object-cover" alt="Consulta Odontológica Avanti" src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=900&q=80">
+    </div>
+    <div>
+      <p class="uppercase tracking-[.25em] text-xs text-ink/50 mb-3 font-medium">Sobre nosotros</p>
+      <h2 class="font-serif text-4xl md:text-5xl mb-6">Medicina dental con calma y criterio</h2>
+      <p class="text-ink/70 mb-4">Somos un equipo comprometido con una odontología rigurosa, mínimamente invasiva y centrada en la persona. Escuchamos primero, planificamos con detalle y tratamos con precisión.</p>
+      <p class="text-ink/70 mb-8">Nuestro espacio está pensado para que te sientas cómodo desde que entras hasta que sales.</p>
+      
+      <div class="grid grid-cols-3 gap-4 border-t border-stone pt-6 text-center md:text-left">
+        <div><p class="font-serif text-3xl text-ink font-medium">15+</p><p class="text-xs text-ink/60 mt-1">Años de experiencia</p></div>
+        <div><p class="font-serif text-3xl text-ink font-medium">5K+</p><p class="text-xs text-ink/60 mt-1">Pacientes felices</p></div>
+        <div><p class="font-serif text-3xl text-ink font-medium">100%</p><p class="text-xs text-ink/60 mt-1">Atención personal</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PASOS / PROCESO -->
+<section id="proceso" class="py-20 bg-ink text-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <p class="uppercase tracking-[.25em] text-xs text-white/50 mb-3 font-medium">Tu primera visita</p>
+      <h2 class="font-serif text-4xl md:text-5xl">Tres pasos hacia tu mejor sonrisa</h2>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="p-8 rounded-2xl border border-white/10 bg-white/[.03]">
+        <p class="font-serif text-5xl text-white/20 mb-4">01</p>
+        <h3 class="font-serif text-2xl mb-2">Escuchamos</h3>
+        <p class="text-white/60 text-sm leading-relaxed">Conversamos sobre tus objetivos, tus dudas y tu historial con total calma.</p>
+      </div>
+
+      <div class="p-8 rounded-2xl border border-white/10 bg-white/[.03]">
+        <p class="font-serif text-5xl text-white/20 mb-4">02</p>
+        <h3 class="font-serif text-2xl mb-2">Diagnosticamos</h3>
+        <p class="text-white/60 text-sm leading-relaxed">Estudio digital completo para planificar con precisión cada tratamiento.</p>
+      </div>
+
+      <div class="p-8 rounded-2xl border border-white/10 bg-white/[.03]">
+        <p class="font-serif text-5xl text-white/20 mb-4">03</p>
+        <h3 class="font-serif text-2xl mb-2">Transformamos</h3>
+        <p class="text-white/60 text-sm leading-relaxed">Ejecutamos el plan con técnicas mínimamente invasivas y seguimiento continuo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO REAL -->
+<section id="contacto" class="py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+    <div>
+      <p class="uppercase tracking-[.25em] text-xs text-ink/50 mb-3 font-medium">Contacto</p>
+      <h2 class="font-serif text-4xl md:text-5xl mb-6">Reserva tu cita</h2>
+      <ul class="space-y-4 text-ink/70">
+        <li class="flex items-start gap-3">
+          <span class="text-lg">📍</span>
+          <span>Calle del Lago Van 6, 28032 Madrid</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="text-lg">📞</span>
+          <a href="tel:+34661666111" class="hover:text-ink font-medium transition">+34 661 666 111</a>
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="text-lg">✉️</span>
+          <a href="mailto:avantydentistry@gmail.com" class="hover:text-ink font-medium transition">avantydentistry@gmail.com</a>
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="text-lg">🕘</span>
+          <span>Lunes a Viernes: 9:00 - 20:00</span>
+        </li>
+      </ul>
+    </div>
+    
+    <form id="contactForm" class="space-y-4" action="#" method="post">
+      <input required name="nombre" placeholder="Nombre completo" class="w-full border border-stone rounded-xl px-4 py-3 focus:outline-none focus:border-ink">
+      <input required type="tel" name="telefono" placeholder="Teléfono" class="w-full border border-stone rounded-xl px-4 py-3 focus:outline-none focus:border-ink">
+      <input type="email" name="email" placeholder="Email" class="w-full border border-stone rounded-xl px-4 py-3 focus:outline-none focus:border-ink">
+      <textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" class="w-full border border-stone rounded-xl px-4 py-3 focus:outline-none focus:border-ink"></textarea>
+      <button class="w-full bg-ink text-white py-3.5 rounded-full hover:bg-charcoal transition font-medium">Enviar solicitud</button>
+      <p id="formMsg" class="text-sm text-ink font-medium hidden">¡Gracias! Te contactaremos en breve.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-stone py-10 bg-[#FAF9F7]">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-ink/60">
+    <a href="#inicio" class="flex items-center gap-3">
+      <img src="avanti_dentistry_transparent.png" alt="Avanti Dentistry Logo" class="h-12 w-auto object-contain">
+    </a>
+    <span>© <span id="year"></span> Avanti Dentistry (ALSER LAB SL). Todos los derechos reservados.</span>
+    <div class="flex gap-5">
+      <button id="privacyModalBtn" class="hover:text-ink transition underline">Política de Privacidad</button>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL POLÍTICA DE PRIVACIDAD -->
+<div id="privacyModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 md:p-8 relative shadow-2xl">
+    <button id="closePrivacyModal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-stone/50 hover:bg-stone flex items-center justify-center text-ink font-bold transition">✕</button>
+    
+    <h3 class="font-serif text-3xl mb-4 text-ink">Política de Privacidad</h3>
+    <div class="text-sm text-ink/80 space-y-4 leading-relaxed">
+      <h4 class="font-semibold text-ink text-base">¿Quién es el responsable del tratamiento de sus datos?</h4>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>Responsable:</strong> ALSER LAB SL</li>
+        <li><strong>CIF:</strong> B85476125</li>
+        <li><strong>Domicilio:</strong> Calle del Lago Van 6, Vicálvaro, Madrid</li>
+        <li><strong>Email de contacto:</strong> avantydentistry@gmail.com</li>
+      </ul>
+
+      <h4 class="font-semibold text-ink text-base mt-4">¿Con qué finalidad trataremos sus datos personales?</h4>
+      <p>AVANTI DENTISTRY trata su información para:</p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li>Mantenimiento de la relación mercantil y prestación del servicio contratado.</li>
+        <li>Realización de presupuestos ajustados a sus necesidades.</li>
+        <li>Gestión de comunicaciones con interesados.</li>
+        <li>Procesos de selección, gestión de empleados y recursos humanos.</li>
+        <li>Envío de información comercial sobre odontología.</li>
+        <li>Prestación asistencial, sanitaria y gestión de actividades formativas.</li>
+      </ul>
+
+      <p class="pt-2">Los datos se conservarán mientras exista una relación contractual o hasta que se revoque el consentimiento, y serán tratados conforme a las normativas de protección de datos vigentes.</p>
+      <p>Puede ejercer sus derechos de acceso, rectificación, supresión, limitación, oposición y portabilidad mediante correo electrónico a <strong>avantydentistry@gmail.com</strong> o por correo postal a nuestra dirección.</p>
+      <p class="text-xs text-ink/60 pt-2">Más información disponible en la Agencia Española de Protección de Datos (AEPD).</p>
+    </div>
+  </div>
+</div>
+
+<!-- WIDGET CHATBOT N8N NATIVO -->
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  createChat({
+    webhookUrl: 'https://n8n.landaistudio.com/webhook/4a15b2ea-25e0-4d7f-b8be-806d7bf1c6a2/chat',
+    mode: 'window',
+    showWelcomeScreen: true,
+    defaultLanguage: 'es',
+    initialMessages: [
+      '¡Hola! 👋 Bienvenido a Avanti Dentistry.',
+      '¿En qué te podemos ayudar hoy o qué consulta tienes sobre nuestros tratamientos?'
+    ],
+    i18n: {
+      es: {
+        title: 'Asistente Virtual',
+        subtitle: 'Atención al paciente 24/7',
+        footer: '',
+        getStarted: 'Iniciar conversación',
+        inputPlaceholder: 'Escribe tu mensaje...',
+      },
+    },
+  });
+</script>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  
+  const $ = id => document.getElementById(id);
+  $('menuBtn').onclick = () => $('mobileNav').classList.toggle('hidden');
+  $('mobileNav').onclick = () => $('mobileNav').classList.add('hidden');
+  
+  // Modal Política de Privacidad
+  $('privacyModalBtn').onclick = () => $('privacyModal').classList.remove('hidden');
+  $('closePrivacyModal').onclick = () => $('privacyModal').classList.add('hidden');
+  $('privacyModal').onclick = e => { if (e.target === $('privacyModal')) $('privacyModal').classList.add('hidden'); };
+
+  $('contactForm').onsubmit = e => {
+    e.preventDefault();
+    $('formMsg').classList.remove('hidden');
+    e.target.reset();
+  };
+</script>
+</body>
+</html>
