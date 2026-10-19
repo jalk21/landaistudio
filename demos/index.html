@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Landai Studio | Demos & Showcase</title>
+  <title>Land AI Studio | Demos & Showcase</title>
   
   <!-- Favicon (Isotipo AI Azul) -->
   <link rel="icon" type="image/png" href="assets/logo_mono.png" />
@@ -77,16 +77,11 @@
       <a href="/" class="flex items-center group py-2">
         <img 
           src="assets/logo.png" 
-          alt="LANDAI STUDIO" 
+          alt="LAND AI STUDIO" 
           class="h-14 sm:h-16 w-auto object-contain transition-transform group-hover:scale-105" 
         />
       </a>
 
-      <!-- Status Badge -->
-      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        Sistemas Operativos
-      </div>
     </div>
   </header>
 
@@ -96,7 +91,7 @@
     <!-- Hero Text -->
     <div class="max-w-2xl mb-12">
       <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-        Catálogo de <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-blue">Demostraciones</span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-blue">Demos</span>
       </h1>
       <p class="text-gray-400 text-base leading-relaxed">
         Explora nuestros prototipos interactivos de inteligencia artificial, chatbots de WhatsApp y automatizaciones para negocios.
@@ -145,16 +140,101 @@
   <!-- FOOTER -->
   <footer class="relative z-10 w-full border-t border-brand-border py-8 bg-brand-dark/50">
     <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-      <p>&copy; 2026 Landai Studio. Todos los derechos reservados.</p>
+      <p>&copy; 2026 Land AI Studio. Todos los derechos reservados.</p>
       <div class="flex items-center gap-6">
         <span class="hover:text-gray-300 transition-colors cursor-pointer">Soporte</span>
-        <span class="hover:text-gray-300 transition-colors cursor-pointer">Privacidad</span>
+        <button onclick="openPrivacyModal()" class="hover:text-gray-300 transition-colors cursor-pointer bg-transparent border-none text-xs text-gray-500 p-0">Privacidad</button>
       </div>
     </div>
   </footer>
 
+  <!-- MODAL DE POLÍTICA DE PRIVACIDAD -->
+  <div id="privacyModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm hidden p-4">
+    <div class="bg-brand-card border border-brand-border rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl relative overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="p-6 border-b border-brand-border flex items-center justify-between">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <i data-lucide="shield-check" class="w-5 h-5 text-brand-cyan"></i>
+          Política de Privacidad y Protección de Datos
+        </h2>
+        <button onclick="closePrivacyModal()" class="text-gray-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/5">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 overflow-y-auto space-y-4 text-sm text-gray-300 leading-relaxed">
+        <p class="text-xs text-gray-400">Última actualización: Octubre de 2026</p>
+
+        <h3 class="text-white font-semibold pt-2">1. Responsable del Tratamiento</h3>
+        <p><strong>Titular / Responsable:</strong> Jorge Alejandro Landaeta Kranwinkel (en adelante, <em>Land AI Studio</em>).<br>
+        <strong>Contacto:</strong> contacto@landaistudio.com<br>
+        <strong>Ámbito de aplicación:</strong> Sitios web de demostración, widgets de chat y canales de atención automatizados (incluyendo WhatsApp).</p>
+
+        <h3 class="text-white font-semibold pt-2">2. Datos que Recopilamos</h3>
+        <p>A través de nuestros canales de chat y asistentes virtuales, podemos recopilar los siguientes datos personales facilitados voluntariamente por el usuario:</p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><strong>Datos identificativos y de contacto:</strong> Nombre, número de teléfono (en caso de interacción por WhatsApp o solicitud de citas) e identificadores de sesión.</li>
+          <li><strong>Contenido de la conversación:</strong> Mensajes, consultas, dudas sobre servicios o preferencias expresadas durante la interacción con el bot.</li>
+          <li><strong>Datos técnicos y metadatos:</strong> Dirección IP, hora de conexión, canal de origen y parámetros técnicos estrictamente necesarios para garantizar la seguridad y el funcionamiento del servicio.</li>
+        </ul>
+
+        <h3 class="text-white font-semibold pt-2">3. Finalidad del Tratamiento</h3>
+        <p>Los datos personales facilitados serán tratados con las siguientes finalidades:</p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><strong>Gestión de la atención al usuario:</strong> Responder a dudas, consultas, ofrecer información sobre los servicios del negocio correspondiente y facilitar la gestión o reserva de citas.</li>
+          <li><strong>Mejora del servicio:</strong> Evaluar el rendimiento del asistente virtual y optimizar la experiencia de usuario en los entornos de demostración.</li>
+          <li><strong>Seguridad:</strong> Prevenir abusos, ataques de denegación de servicio (DoS), inyecciones de código y garantizar la estabilidad de la infraestructura técnica.</li>
+        </ul>
+
+        <h3 class="text-white font-semibold pt-2">4. Legitimación (Base Legal)</h3>
+        <p>El tratamiento de los datos se basa en el <strong>consentimiento explícito</strong> del usuario al iniciar voluntariamente la conversación a través del chat web o de la aplicación de mensajería (WhatsApp), así como en el interés legítimo para garantizar la seguridad de los sistemas informáticos.</p>
+
+        <h3 class="text-white font-semibold pt-2">5. Destinatarios de los Datos y Proveedores Tecnológicos</h3>
+        <p>Para la prestación del servicio, los datos son procesados a través de infraestructura tecnológica segura. Los proveedores de servicios actúan como encargados del tratamiento bajo estrictas medidas de confidencialidad:</p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><strong>n8n / Servidor VPS:</strong> Automatización y procesamiento de los mensajes del flujo conversacional.</li>
+          <li><strong>Cloudflare:</strong> Seguridad perimetral, protección WAF y mitigación de amenazas.</li>
+          <li><strong>Meta Platforms, Inc. (WhatsApp):</strong> En caso de interactuar a través de la API de WhatsApp, los mensajes se rigen bajo los protocolos de seguridad y privacidad de dicha plataforma.</li>
+          <li><strong>El cliente final (Negocio/Clínica):</strong> Los datos necesarios para la gestión de citas o consultas son remitidos al negocio o clínica específico objeto de la consulta del usuario.</li>
+        </ul>
+
+        <h3 class="text-white font-semibold pt-2">6. Plazo de Conservación</h3>
+        <p>Los datos proporcionados durante las conversaciones se conservarán durante el tiempo estrictamente necesario para cumplir con la finalidad de la consulta o la gestión de la cita, y posteriormente durante los plazos legalmente exigidos para atender posibles responsabilidades.</p>
+
+        <h3 class="text-white font-semibold pt-2">7. Derechos del Usuario</h3>
+        <p>El usuario tiene derecho a obtener confirmación sobre si estamos tratando sus datos personales y a ejercer los derechos de acceso, rectificación, supresión, limitación u oposición enviando una solicitud por escrito a: <strong>contacto@landaistudio.com</strong>.</p>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-brand-border flex justify-end bg-brand-dark/40">
+        <button onclick="closePrivacyModal()" class="px-4 py-2 rounded-xl bg-brand-blue hover:bg-brand-blue/80 text-white font-medium text-xs transition-colors">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     lucide.createIcons();
+
+    function openPrivacyModal() {
+      document.getElementById('privacyModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePrivacyModal() {
+      document.getElementById('privacyModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Cerrar modal al hacer clic fuera del contenido
+    document.getElementById('privacyModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePrivacyModal();
+      }
+    });
   </script>
 </body>
 </html>
