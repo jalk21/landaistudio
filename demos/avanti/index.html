@@ -54,7 +54,7 @@
     .card-svc:hover .svc-ico { background: #ffffff; color: #111111; }
     .card-svc:hover .svc-txt { color: rgba(255,255,255,.75); }
 
-    /* Personalización estricta del Chatbot n8n al negro/blanco del logo */
+    /* Modernización avanzada del Chatbot n8n (Sin cambiar colores) */
     :root {
       --chat--color-primary: #111111 !important;
       --chat--color-primary-shade-50: #222222 !important;
@@ -73,10 +73,62 @@
       --chat--font-family: 'Inter', sans-serif !important;
     }
 
+    /* Contenedor general del widget con bordes redondeados y sombra elegante */
+    .n8n-chat {
+      border-radius: 24px !important;
+      overflow: hidden !important;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15) !important;
+      border: 1px solid #e5e5e3 !important;
+    }
+
+    /* Cabecera más limpia con padding generoso */
+    .n8n-chat-header {
+      padding: 20px 24px !important;
+    }
+
+    /* Estilo refinado para las burbujas de los mensajes */
+    .n8n-chat-message-bot, .n8n-chat-message-user {
+      border-radius: 16px !important;
+      padding: 12px 16px !important;
+      font-size: 0.92rem !important;
+      line-height: 1.5 !important;
+    }
+
+    /* Barra de entrada de texto moderna */
+    .n8n-chat-input {
+      border-top: 1px solid #e5e5e3 !important;
+      padding: 16px 20px !important;
+      background-color: #ffffff !important;
+    }
+
+    .n8n-chat-input textarea, 
+    .n8n-chat-input input {
+      border-radius: 12px !important;
+      border: 1px solid #e5e5e3 !important;
+      padding: 10px 14px !important;
+      background-color: #faf9f7 !important;
+    }
+
+    .n8n-chat-input textarea:focus, 
+    .n8n-chat-input input:focus {
+      border-color: #111111 !important;
+      outline: none !important;
+    }
+
+    /* Botón flotante de apertura con sombra sutil */
     button[aria-label*="chat"],
     button[aria-label*="Chat"],
     .n8n-chat-button {
       background-color: #111111 !important;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3) !important;
+      transition: transform 0.2s ease, background-color 0.2s ease !important;
+    }
+
+    button[aria-label*="chat"]:hover,
+    button[aria-label*="Chat"]:hover,
+    .n8n-chat-button:hover {
+      transform: scale(1.05) !important;
+      background-color: #222222 !important;
     }
   </style>
 </head>
@@ -441,11 +493,11 @@
   import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
   createChat({
-    webhookUrl: 'https://n8n.landaistudio.com/webhook/4a15b2ea-25e0-4d7f-b8be-806d7bf1c6a2/chat',
+    webhookUrl: 'https://n8n.landaistudio.com/webhook/02b2cd52-3dca-46ab-8f45-c0412c76041a/chat',
     mode: 'window',
     showWelcomeScreen: true,
     defaultLanguage: 'es',
-    // Carga de metadatos del cliente para parametrizar n8n
+    // Parámetro esencial para identificar al cliente desde la web
     metadata: {
       client_id: 'avanti_dentistry'
     },
