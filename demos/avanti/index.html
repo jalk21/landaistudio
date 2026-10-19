@@ -497,19 +497,45 @@
     e.target.reset();
   };
 </script>
-<!-- WIDGET CHATBOT N8N NATIVO -->
 <script type="module">
   import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
-  createChat({
-    webhookUrl: 'https://n8n.landaistudio.com/webhook/02b2cd52-3dca-46ab-8f45-c0412c76041a/chat?client=avanti_dentistry',
-    mode: 'window',
-    showWelcomeScreen: true,
-    defaultLanguage: 'es',
-    metadata: {
-      client_id: 'avanti_dentistry'
-    },
-  });
+  // 1. Obtener el client_id de los parámetros de la URL (ej: ?client=avanti_dentistry)
+  const urlParams = new URLSearchParams(window.location.search);
+  const clientId = urlParams.get('client') || 'avanti_dentistry';
+
+  // 2. Consultar la configuración del cliente a n8n antes de renderizar el chat
+  async function initChat() {
+    try {
+      // Apunta a un webhook en n8n diseñado exclusivamente para devolver la configuración en JSON
+      const response = await fetch(`https://n8n.landaistudio.com/webhook/config?client_id=${clientId}`);
+      const config = await response.json();
+
+      // 3. Inicializar el chat con los datos devueltos por Google Sheets
+      createChat({
+        webhookUrl: 'https://n8n.landaistudio.com/webhook/02b2cd52-3dca-46ab-8f45-c0412c76041a/chat',
+        mode: 'window',
+        showWelcomeScreen: true,
+        defaultLanguage: 'es',
+        metadata: {
+          client_id: clientId
+        },
+        i18n: {
+          es: {
+            title: config.title || 'Asistente Virtual',
+            subtitle: config.subtitle || 'Atención al cliente 24/7',
+            footer: '',
+            getStarted: 'Iniciar conversación',
+            inputPlaceholder: config.inputPlaceholder || 'Escribe tu mensaje...',
+          },
+        },
+      });
+    } catch (error) {
+      console.error('Error cargando la configuración del chat:', error);
+    }
+  }
+
+  initChat();
 </script>
 </body>
 </html>
