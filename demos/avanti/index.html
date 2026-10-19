@@ -454,31 +454,6 @@
   </div>
 </div>
 
-<!-- WIDGET CHATBOT N8N NATIVO -->
-<script type="module">
-  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-
-  createChat({
-    webhookUrl: 'https://n8n.landaistudio.com/webhook/4a15b2ea-25e0-4d7f-b8be-806d7bf1c6a2/chat?client=avanti_dentistry',
-    mode: 'window',
-    /*showWelcomeScreen: true,
-    defaultLanguage: 'es',
-    initialMessages: [
-      '¡Hola! 👋 Bienvenido a Avanti Dentistry.',
-      '¿En qué te podemos ayudar hoy o qué consulta tienes sobre nuestros tratamientos?'
-    ],
-    i18n: {
-      es: {
-        title: 'Asistente Virtual',
-        subtitle: 'Atención al paciente 24/7',
-        footer: '',
-        getStarted: 'Iniciar conversación',
-        inputPlaceholder: 'Escribe tu mensaje...',
-      },
-    },*/
-  });
-</script>
-
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   
