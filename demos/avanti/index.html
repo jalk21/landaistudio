@@ -477,7 +477,7 @@
 
   // 1. Obtener el client_id de los parámetros de la URL (ej: ?client=avanti_dentistry)
   const urlParams = new URLSearchParams(window.location.search);
-  const clientId = urlParams.get('client') || 'avanti_dentistry';
+  const client_id = urlParams.get('client_id') || 'avanti_dentistry';
 
   // 2. Consultar la configuración del cliente a n8n antes de renderizar el chat
   async function initChat() {
